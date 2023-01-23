@@ -1,0 +1,62 @@
+<form #myForm="ngForm" (ngSubmit)="onSubmit()">
+
+
+  <!-- le firstname -->
+
+  <fieldset>
+    <label for="firstname-user">Firstname : </label>
+    <input id="firstname-user" name="firstname-order" type="text" [(ngModel)]="model.firstname" #firstname="ngModel" required minlength="3" maxlength="15"/>
+  </fieldset>
+<!-- erreurs -->
+  <div *ngIf="myForm.submitted && firstname.errors">
+    <span *ngIf="firstname.errors?.['required']">Le prénom est requis</span>
+    <span *ngIf="firstname.errors?.['minlength']">La longueur minimale doit être supérieure à 3 caractères</span>
+    <span *ngIf="firstname.errors?.['maxlength']">La longueur maximale doit être inférieure à 15 caractères</span>
+  </div>
+
+
+ <!-- le lastname -->
+
+ <fieldset>
+  <label for="lastname-user">Lastname : </label>
+  <input id="lastname-user" name="lastname-order" type="text" [(ngModel)]="model.lastname" #lastname="ngModel" required minlength="3" maxlength="15"/>
+</fieldset>
+<!-- erreurs -->
+<div *ngIf="myForm.submitted && lastname.errors">
+  <span *ngIf="lastname.errors?.['required']">Le nom est requis</span>
+  <span *ngIf="lastname.errors?.['minlength']">La longueur minimale doit être supérieure à 3 caractères</span>
+  <span *ngIf="lastname.errors?.['maxlength']">La longueur maximale doit être inférieure à 15 caractères</span>
+</div>
+
+<!-- l'email -->
+
+ <fieldset>
+    <label for="contact-user">Email : </label>
+    <input id="contact-user" name="contact-user" type="email" [(ngModel)]="model.contact" #contact="ngModel" required email>
+  </fieldset>
+
+<!-- erreurs -->
+  <div *ngIf="myForm.submitted && contact.errors">
+    <span *ngIf="contact.errors?.['required']">Le champ email est requis</span>
+    <span *ngIf="contact.errors?.['email']">L'adresse email doit être valide</span>
+  </div>
+
+  <!-- le mot de passe -->
+
+  <fieldset>
+    <label for="password-user">Password : </label>
+    <input id="password-user" name="password-user" type="password" [(ngModel)]="model.password" #password='ngModel' required password minlength="6" maxlength="15">
+  </fieldset>
+
+  <!-- erreurs -->
+  <div *ngIf="myForm.submitted && password.errors">
+    <span *ngIf="password.errors?.['required']">un mot de passe est requis</span>
+    <span *ngIf="password.errors?.['password']">Le mot de passe doit être valide</span>
+    <span *ngIf="password.errors?.['minlength']">La longueur minimale doit être supérieure à 6 caractères</span>
+    <span *ngIf="password.errors?.['maxlength']">La longueur maximale doit être inférieure à 15 caractères</span>
+  </div>
+
+
+  <button type="reset">Restaurer</button>
+  <button type="submit">Sauvegarder</button>
+</form>
